@@ -5,8 +5,14 @@ const path = require("path");
 const app = express();
 const port = 3000;
 
+const route = require("./route");
+
 // public folder
 app.use(express.static(path.join(__dirname, "public")));
+
+// handle middleware
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 // HTTP logger
 app.use(morgan("combined"));
@@ -21,9 +27,8 @@ app.engine(
 app.set("view engine", "hbs");
 app.set("views", path.join(__dirname, "resources/views"));
 
-app.get("/", (req, res) => {
-	res.render("home");
-});
+// Routes init
+route(app);
 
 app.listen(port, () => {
 	console.log(`Example app listening on port ${port}`);
