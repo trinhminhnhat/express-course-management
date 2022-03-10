@@ -5,9 +5,9 @@
   "main": "./src/index.js",
   "scripts": {
     "start": "nodemon --inspect ./src/index.js",
-    "prettier": "prettier --config ./.prettierrc.json --write \"./src/**/*.{js,json,scss}\"",
+    "prettier": "lint-staged",
     "watch": "node-sass -w ./src/resources/scss/ --output ./src/public/css/",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "postinstall": "husky install"
   },
   "repository": {
     "type": "git",
@@ -19,14 +19,18 @@
     "url": "https://github.com/trinhminhnhat/express-course-management/issues"
   },
   "homepage": "https://github.com/trinhminhnhat/express-course-management#readme",
+  "lint-staged": {
+    "./src/**/*.{js,json,scss}": "prettier --config ./.prettierrc.json --write"
+  },
   "dependencies": {
     "express": "^4.17.3",
     "express-handlebars": "^6.0.3"
   },
   "devDependencies": {
+    "husky": "^7.0.0",
+    "lint-staged": "^12.3.5",
     "morgan": "^1.10.0",
     "node-sass": "^7.0.1",
-    "nodemon": "^2.0.15"
     "nodemon": "^2.0.15",
     "prettier": "^2.5.1"
   }
