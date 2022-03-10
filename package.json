@@ -5,7 +5,6 @@
   "main": "./src/index.js",
   "scripts": {
     "start": "nodemon --inspect ./src/index.js",
-    "prettier": "lint-staged",
     "watch": "node-sass -w ./src/resources/scss/ --output ./src/public/css/",
     "postinstall": "husky install"
   },
