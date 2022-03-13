@@ -1,7 +1,12 @@
+const Course = require('../../models/Course');
+
 class NewsController {
 	// [GET] /news
-	index(req, res) {
-		res.render('search');
+	index(req, res, next) {
+		Course.find({})
+			.then(courses => res.json(courses))
+			.catch(next);
+		// res.render('search');
 	}
 
 	// [GET] /news/:slug

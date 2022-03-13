@@ -21,11 +21,29 @@ class CourseController {
 	// [POST] /courses/store
 	store(req, res, next) {
 		const formData = req.body;
-		formData.image = `https://img.youtube.com/vi/${formData.video_id}/sddefault.jpg`;
+		formData.image = `https://img.youtube.com/vi/${formData.videoId}/sddefault.jpg`;
 		const course = new Course(formData);
 		course
 			.save()
 			.then(() => res.redirect('/'))
+			.catch(next);
+	}
+
+	// [GET] /courses/:id/edit
+	edit(req, res, next) {
+		Course.findById(req.params.id)
+			.then(course => {
+				res.render('courses/edit', {
+					course: mongooseToObject(course),
+				});
+			})
+			.catch(next);
+	}
+
+	// [PUT] /courses/:id
+	update(req, res, next) {
+		Course.findByIdAndUpdate(req.params.id, req.body)
+			.then(() => res.redirect('/me/stored/courses'))
 			.catch(next);
 	}
 }

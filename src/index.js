@@ -1,5 +1,6 @@
 const express = require('express');
 const morgan = require('morgan');
+const methodOverride = require('method-override');
 const { engine } = require('express-handlebars');
 const path = require('path');
 const app = express();
@@ -21,11 +22,17 @@ app.use(express.json());
 // HTTP logger
 app.use(morgan('combined'));
 
+// override with POST having ?_method=DELETE
+app.use(methodOverride('_method'));
+
 // Template engine
 app.engine(
 	'hbs',
 	engine({
 		extname: '.hbs',
+		helpers: {
+			sum: (a, b) => a + b,
+		},
 	})
 );
 app.set('view engine', 'hbs');
