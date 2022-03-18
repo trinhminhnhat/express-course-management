@@ -12,7 +12,7 @@
             <option value="">--Please choose action--</option>
             <option value="delete">Delete</option>
         </select>
-        <button class="btn btn-primary disabled btn-check-all-submit">Action</button>
+        <button class="btn btn-primary btn-check-all-submit" disabled>Action</button>
     </div>
     <div class="row">
         <div class="col-lg-12">
@@ -124,13 +124,13 @@
             const checkedCount = document.querySelectorAll('input[name="courseIds[]"]:checked').length;
 
             if (checkedCount) {
-                btnCheckAllSubmit.classList.remove('disabled');
+                btnCheckAllSubmit.disabled = false;
             } else {
-                btnCheckAllSubmit.classList.add('disabled');
+                btnCheckAllSubmit.disabled = true;
             }
         }
 
-        btnCheckAllSubmit.onsubmit = function (event) {
+        courseForm.onsubmit = function (event) {
             const checkedCount = document.querySelectorAll('input[name="courseIds[]"]:checked').length;
 
             if (!checkedCount) {
