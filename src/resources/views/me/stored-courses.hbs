@@ -1,5 +1,12 @@
 <h1>My courses</h1>
-<a href="/me/trash/courses">Trash ({{ countDeleted }})</a>
+<div class="row">
+    <div class="col-lg-6">
+        <a href="/me/trash/courses">Trash ({{ countDeleted }})</a>
+    </div>
+    <div class="col-lg-6 text-lg-end">
+        <a class="btn btn-success" href="/courses/create">Create new course</a>
+    </div>
+</div>
 <form name="course-form" method="post" action="/courses/handle-form-action">
     <div class="d-flex mt-3 align-items-center gap-3">
         <div class="form-check flex-shrink-0">
@@ -21,9 +28,17 @@
                     <tr>
                         <th></th>
                         <th scope="col">#</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Slug</th>
-                        <th scope="col">Created at</th>
+                        <th scope="col">Name
+                            {{{sortable 'name' _sort}}}
+                        </th>
+                        <th scope="col">
+                            Slug
+                            {{{sortable 'slug' _sort}}}
+                        </th>
+                        <th scope="col">
+                            Created at
+                            {{{sortable 'createdAt' _sort}}}
+                        </th>
                         <th scope="col"></th>
                     </tr>
                 </thead>
