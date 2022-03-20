@@ -27,7 +27,9 @@
                 <thead>
                     <tr>
                         <th></th>
-                        <th scope="col">#</th>
+                        <th scope="col">ID
+                            {{{sortable '_id' _sort}}}
+                        </th>
                         <th scope="col">Name
                             {{{sortable 'name' _sort}}}
                         </th>
@@ -51,7 +53,7 @@
                                     value="{{ this._id }}">
                             </div>
                         </td>
-                        <td scope="row">{{ sum @index 1 }}</td>
+                        <td scope="row">{{ this._id }}</td>
                         <td>{{ this.name }}</td>
                         <td>{{ this.slug }}</td>
                         <td>{{ this.createdAt }}</td>
